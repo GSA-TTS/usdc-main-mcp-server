@@ -1,7 +1,6 @@
 from fastmcp import Client, FastMCP
-import json
 
-def mount_servers(mcp, config_path="servers.json"):
+def mount_servers(mcp, servers_config=None):
     """
     Mount MCP servers from a JSON configuration file.
     
@@ -12,15 +11,21 @@ def mount_servers(mcp, config_path="servers.json"):
     Returns:
         The mcp instance with mounted servers
     """
-    # Load server configuration
-    with open(config_path, 'r') as f:
-        servers_config = json.load(f)
+
+    if servers_config is None:
+        servers_config = [
+            {
+                "prefix": "places",
+                "url": "https://cdc-places-mcp-server-bright-hartebeest-nc.app.cloud.gov/mcp"
+            },
+            {
+                "prefix": "reporter",
+                "url": "https://nih-reporter-mcp-server-relaxed-bilby-co.app.cloud.gov/mcp"
+            }
+        ]
     
-    # Mount each server
-    for server in servers_config.get('servers', []):
-        proxy = FastMCP.as_proxy(
-            Client(server['url'])
-        )
+    for server in servers_config:
+        proxy = FastMCP.as_proxy(Client(server['url']))
         mcp.mount(proxy, prefix=server['prefix'])
     
     return mcp
