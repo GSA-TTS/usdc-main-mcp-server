@@ -1,0 +1,6 @@
+# ignore virtual environment 
+.venv/
+
+# ignore build artifacts 
+src/usdc_main_mcp_server.egg-info/
+src/hub/__pycache__/

@@ -1,0 +1,12 @@
+{
+  "servers": [
+    {
+      "prefix": "places",
+      "url": "https://cdc-places-mcp-server-bright-hartebeest-nc.app.cloud.gov/mcp"
+    },
+    {
+      "prefix": "reporter",
+      "url": "https://nih-reporter-mcp-server-relaxed-bilby-co.app.cloud.gov/mcp"
+    }
+  ]
+}
