@@ -5,13 +5,15 @@ from starlette.responses import JSONResponse
 # Initialize FastMCP server
 mcp = FastMCP("main")
 
-# Mount servers 
+# Mount servers
 mcp = mount_servers(mcp)
+
 
 # Health check endpoint
 @mcp.custom_route("/health", methods=["GET"])
 async def health_check(request):
     return JSONResponse({"status": "healthy", "service": "mcp-server"})
+
 
 # Create ASGI app for deployment
 app = mcp.http_app(stateless_http=True)

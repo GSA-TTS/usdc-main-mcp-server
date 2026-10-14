@@ -4,3 +4,5 @@
 # ignore build artifacts 
 src/usdc_main_mcp_server.egg-info/
 src/hub/__pycache__/
+tests/__pycache__/
+.pytest_cache/
